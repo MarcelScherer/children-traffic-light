@@ -6,7 +6,7 @@
 #define TRANSISTOR_PIN_RED    11
 #define TRANSISTOR_PIN_YELLOW 12
 #define TRANSISTOR_PIN_GREEN  13
-#define TRAFFIC_LIGHT_TIMER   14  /* Pin A0 */
+#define TRAFFIC_LIGHT_TIMER   A2  /* Pin A2 */
 
 typedef enum{
   state_green          = 1,
@@ -28,8 +28,7 @@ void setup() {
 
 void loop() {
 
-  uint16_t timer = max(analogRead(TRAFFIC_LIGHT_TIMER) / 1023 * STATE_TIMER_MAX, STATE_TIMER_MIN);
-
+  uint32_t timer = max((analogRead(TRAFFIC_LIGHT_TIMER) * STATE_TIMER_MAX) / 1023 , STATE_TIMER_MIN);
   Serial.print("timer: ");
   Serial.println(timer);
 
